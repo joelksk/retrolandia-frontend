@@ -1,0 +1,38 @@
+:root {
+  /* Colors */
+  --bg-dark: #0f0f1a;
+  --bg-card: #161625;
+  --primary: #ffcc00;    /* Sega Blue */
+  --secondary: #ff0055;  /* Accent Pink/Red */
+  --text-main: #f0f0f0;
+  --text-dim: #b0b0b0;
+  --border: #333344;
+  --text-dark: #000;
+  --font-weight: 900;
+
+
+  /* Transitions & Effects */
+  --transition: all 0.3s ease;
+  --shadow-neon: 0 0 15px rgba(0, 210, 255, 0.3);
+  
+  /* Spacing */
+  --container-max: 1200px;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+h1 {
+  color: #ffcc00;
+  text-shadow: 3px 3px #ff0055;
+}
+

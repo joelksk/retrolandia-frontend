@@ -1,0 +1,48 @@
+.section {
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #333;
+  padding-bottom: 0.5rem;
+}
+
+.header h2 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  text-shadow: 3px 3px var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.viewAll {
+  color: var(--primary);
+  text-shadow: 3px 3px var(--secondary);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.9rem;
+  transition: var(--transition);
+
+}
+
+.viewAll:hover {
+  opacity: 0.7;
+}
+
+.grid {
+  display: grid;
+  /* Creamos una fila de 5 o 6 juegos que se ajuste sola */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* En móvil 2 columnas */
+  }
+}

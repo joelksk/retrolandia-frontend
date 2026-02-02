@@ -1,0 +1,14 @@
+export  const robots = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: '/api/',
+    },
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
+}
+
+export default robots

@@ -1,0 +1,94 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: var(--primary);
+  text-transform: uppercase;
+}
+
+/* Zona de herramientas: Buscador y Letras */
+.toolbar {
+  background: var(--bg-card);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border: 1px solid var(--border);
+}
+
+.searchWrapper {
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-dark);
+  color: var(--text-main);
+  font-size: 1rem;
+  outline: none;
+  max-width: 80%;
+}
+
+.searchInput:focus {
+  border-color: var(--primary);
+}
+
+.alphabet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.letterBtn {
+  background: #252538;
+  border: 1px solid #444;
+  color: white;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: var(--transition);
+}
+
+.activeLetter{
+  width: 35px;
+  height: 35px;
+  background: var(--primary);
+  border-color: var(--primary);
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.letterBtn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-dark);
+  transform: scale(1.1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+}

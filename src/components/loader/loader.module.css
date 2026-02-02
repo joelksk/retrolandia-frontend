@@ -1,0 +1,43 @@
+.loaderWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.pixelSpinner {
+  width: 50px;
+  height: 50px;
+  border: 4px double var(--primary);
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  animation: rotate 1s linear infinite;
+  box-shadow: 0 0 15px var(--primary);
+  position: relative;
+}
+
+.pixelSpinner::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 5px; right: 5px; bottom: 5px;
+  border: 2px dotted var(--primary);
+  border-radius: 50%;
+  animation: rotate reverse 1.5s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.loadingText {
+  margin-top: 1rem;
+  color: var(--primary);
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  text-shadow: 0 0 5px var(--secodary);
+}
