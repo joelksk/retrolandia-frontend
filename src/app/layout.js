@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: {
-    default: 'Retrolandia - Tu Paraíso Retro',
-    template: '%s | Retrolandia'
+    default: 'RetroScore- Tu Paraíso Retro',
+    template: '%s | RetroScore'
   },
   description: 'Juega a los mejores clásicos de NES, Sega y SNES y muchas consolas mas, totalmente gratis.',
   keywords: ['retro games', 'emulator online', 'juegos clásicos', 'NES online'],

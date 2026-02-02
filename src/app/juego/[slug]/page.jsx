@@ -7,11 +7,11 @@ export const generateMetadata = async ({ params }) => {
   const data = await res.json();
   const game = data.game;
 
-  if (!game) return { title: "Juego no encontrado | Retrolandia" };
+  if (!game) return { title: "Juego no encontrado | RetroScore" };
 
   return {
-    title: `${game.title} - Jugar Online | Retrolandia`,
-    description: game.description || `Juega a ${game.title} en Retrolandia.`,
+    title: `${game.title} - Jugar Online | RetroScore`,
+    description: game.description || `Juega a ${game.title} en RetroScore.`,
     openGraph: {
       title: `🕹️ ¡A jugar ${game.title}!`,
       images: [game.image],
