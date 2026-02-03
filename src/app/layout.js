@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
+import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/components/footer/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,9 +41,12 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body >
+        <Navbar />
         {children}
+        <Footer />
       </body>
+      <GoogleAnalytics gaId="G-KSB13RR93N" />
     </html>
   );
 }

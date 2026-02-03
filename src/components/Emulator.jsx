@@ -46,19 +46,40 @@ const Emulator = forwardRef(({ game }, ref) => {
     }, 10000);
 
   return () => {
-    clearTimeout(checkTimeout);
-    loader.remove();
-    if (window.EJS_terminate) window.EJS_terminate();
-    delete window.EJS_player;
-    delete window.EJS_core;
-    delete window.EJS_gameUrl;
+clearTimeout(checkTimeout);
 
-    window.EJS_emulator.stop(); 
-    window.EJS_emulator = null;
+  // 1. Detener el motor de forma segura
+  try {
+    if (window.EJS_terminate) {
+      window.EJS_terminate();
+    }
+  } catch (e) {
+    console.warn("Error al terminar EJS:", e);
+  }
+
+  // 2. Quitar el script del DOM
+  const loaderScript = document.getElementById('ejs-loader');
+  if (loaderScript) loaderScript.remove();
+
+  // 3. Limpiar el contenedor (evita que queden restos visuales o canvas huérfanos)
+  const container = document.getElementById('game-container');
+  if (container) container.innerHTML = "";
+
+  // 4. Limpiar variables globales (USAR DELETE)
+  delete window.EJS_player;
+  delete window.EJS_core;
+  delete window.EJS_gameUrl;
+  delete window.EJS_startOnLoaded;
+  delete window.EJS_pathtodata;
+  
+  // 5. Matar la instancia del emulador por completo
+  window.EJS_emulator = null;
+  
+  console.log("🧼 Memoria del emulador limpia");
     const audioCtx = window.AudioContext || window.webkitAudioContext;
     if (audioCtx) {
            // Esto silencia cualquier nodo de audio colgado
-      }
+    }
   };
 }, [game.romUrl, game.system]);
 

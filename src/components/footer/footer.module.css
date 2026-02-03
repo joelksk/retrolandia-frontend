@@ -1,0 +1,41 @@
+.footer {
+  background: var(--bg-dark);
+  border-top: 1px solid var(--primary);
+  margin-top: 50px;
+  color: var(--text-main);
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.logo {
+  padding: 0;
+}
+
+.logo span { color: var(--primary); }
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  gap: 1rem;
+}
+
+.links a {
+  color: var(--primary);
+  text-decoration: none;
+}

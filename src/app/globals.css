@@ -29,10 +29,12 @@ body {
   align-items: center;
   min-height: 100vh;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
-  color: #ffcc00;
-  text-shadow: 3px 3px #ff0055;
+  color: var(--primary);
+  text-shadow: 3px 3px var(--secondary);
 }
 

@@ -8,7 +8,7 @@ import Loader from './loader/Loader';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL  || 'http://localhost:5000';
 
-export default function GameRow({ title, platform }) {
+const  GameRow = ({ title, platform }) => {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -42,3 +42,5 @@ export default function GameRow({ title, platform }) {
     </section>
   );
 }
+
+export default GameRow
