@@ -116,7 +116,7 @@ export default function CommentSection({ gameId }) {
           value={nick}
           onChange={(e) => setNick(e.target.value)}
           style={{ width: '30%' }}
-          readOnly={window.localStorage.getItem('retrolandia_user') ? true : false}
+          readOnly={localStorage.getItem('retrolandia_user') ? true : false}
         />
         {!hasVoted ? (
           <div className={styles.starRating}>
@@ -135,7 +135,7 @@ export default function CommentSection({ gameId }) {
                 </button>
               );
             })}
-            <span className={styles.ratingNumber}>{rating > 0 ? `${rating}/10` : "Vota"}</span>
+            <span className={styles.ratingNumber}>{rating > 0 ? `${rating}/10` : ""}</span>
           </div>
         ) : (
           <div className={styles.votedBadge}>Tu voto: {userRating}/10</div>

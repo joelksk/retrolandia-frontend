@@ -6,13 +6,14 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
-        <Link href="/" className={styles.logo}>
+        <a href="/" className={styles.logo}>
           RETRO<span>SCORE</span>
-        </Link>
+        </a>
         
         <div className={styles.menu}>
-          <Link href="/" className={styles.navLink}>Inicio</Link>
-          <span className={styles.badge}>v1.0.1</span>
+          <a href="/" className={styles.navLink}>Inicio</a>
+          <a href="/about" className={styles.navLink}>Nosotros</a>
+          <span className={styles.badge}>v1.0.2</span>
         </div>
       </div>
     </nav>

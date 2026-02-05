@@ -3,10 +3,62 @@ import { useEffect, forwardRef } from "react"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
+const myControls = [
+    { value: 50, value2: "BUTTON_2" },           // 2 -> B (NES/Sega)
+    { value: 52, value2: "BUTTON_4" },           // 4 -> X (SNES/Sega)
+    { value: 16, value2: "SELECT" },             // Shift -> Select
+    { value: 13, value2: "START" },              // Enter -> Start
+    { value: 87, value2: "DPAD_UP" },            // W -> Arriba
+    { value: 83, value2: "DPAD_DOWN" },          // S -> Abajo
+    { value: 65, value2: "DPAD_LEFT" },          // A -> Izquierda
+    { value: 68, value2: "DPAD_RIGHT" },         // D -> Derecha
+    { value: 49, value2: "BUTTON_1" },           // 1 -> A (NES/Sega)
+    { value: 51, value2: "BUTTON_3" },           // 3 -> Y (SNES/Sega)
+    { value: 53, value2: "LEFT_TOP_SHOULDER" },  // 5 -> L (SNES) / C (Sega)
+    { value: 54, value2: "RIGHT_TOP_SHOULDER" } // 6 -> R (SNES) / Z (Sega)
+];
 const Emulator = forwardRef(({ game }, ref) => {
 
     useEffect(() => {
   if (!game?.romUrl) return;
+
+  const container = document.getElementById('game-container');
+
+  const enableFullscreen = () => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile && container) {
+      if (container.requestFullscreen) {
+        container.requestFullscreen();
+      } else if (container.webkitRequestFullscreen) { /* Safari/iOS */
+        container.webkitRequestFullscreen();
+      }
+    }
+    // Una vez activado, removemos el listener para que no intente 
+    // entrar en fullscreen cada vez que el usuario presiona un botón táctil
+    container.removeEventListener('click', enableFullscreen);
+  };
+
+  if (container) {
+    container.addEventListener('click', enableFullscreen);
+  }
+
+  //Anulamos que las teclas de flechas muevan la pagina
+  const handleKeyDown = (e) => {
+    // Verificamos si el usuario está escribiendo en un campo de texto
+  const isTyping = e.target.tagName === 'INPUT' || 
+                   e.target.tagName === 'TEXTAREA' || 
+                   e.target.isContentEditable;
+
+  // Si está escribiendo, no bloqueamos nada, dejamos que el espacio funcione
+  if (isTyping) return;
+
+  // Si NO está escribiendo, bloqueamos las teclas que mueven el scroll
+  if (["ArrowUp", "ArrowDown", "Space", "PageUp", "PageDown"].includes(e.code)) {
+    e.preventDefault();
+  }
+  };
+  window.addEventListener('keydown', handleKeyDown);
 
   // Limpieza preventiva: Si ya existía un emulador, lo borramos
     const existingScript = document.getElementById('ejs-loader');
@@ -45,41 +97,68 @@ const Emulator = forwardRef(({ game }, ref) => {
       }
     }, 10000);
 
-  return () => {
-clearTimeout(checkTimeout);
+    return () => {
+    clearTimeout(checkTimeout);
 
-  // 1. Detener el motor de forma segura
-  try {
-    if (window.EJS_terminate) {
-      window.EJS_terminate();
+    // --- DESBLOQUEAR SCROLL ---
+    document.body.style.overflow = 'auto';
+    window.removeEventListener('keydown', handleKeyDown);
+
+    // 1. Detener el motor de forma segura
+    try {
+      if (window.EJS_terminate) {
+        window.EJS_terminate();
+      }
+    } catch (e) {
+      console.warn("Error al terminar EJS:", e);
     }
-  } catch (e) {
-    console.warn("Error al terminar EJS:", e);
-  }
 
-  // 2. Quitar el script del DOM
-  const loaderScript = document.getElementById('ejs-loader');
-  if (loaderScript) loaderScript.remove();
+    // --- AGREGA ESTO AQUÍ PARA EL AUDIO ---
+    try {
+      // EmulatorJS suele crear instancias globales de audio. 
+      // Vamos a buscar cualquier AudioContext activo en la ventana y cerrarlo.
+      const audioContexts = [];
+      
+      // Algunos navegadores exponen los contextos o los podemos capturar de la instancia
+      if (window.EJS_emulator && window.EJS_emulator.audioContext) {
+        window.EJS_emulator.audioContext.close();
+      }
 
-  // 3. Limpiar el contenedor (evita que queden restos visuales o canvas huérfanos)
-  const container = document.getElementById('game-container');
-  if (container) container.innerHTML = "";
-
-  // 4. Limpiar variables globales (USAR DELETE)
-  delete window.EJS_player;
-  delete window.EJS_core;
-  delete window.EJS_gameUrl;
-  delete window.EJS_startOnLoaded;
-  delete window.EJS_pathtodata;
-  
-  // 5. Matar la instancia del emulador por completo
-  window.EJS_emulator = null;
-  
-  console.log("🧼 Memoria del emulador limpia");
-    const audioCtx = window.AudioContext || window.webkitAudioContext;
-    if (audioCtx) {
-           // Esto silencia cualquier nodo de audio colgado
+      // Solución radical: Buscar y suspender el contexto de audio global si existe
+      // Esto mata cualquier sonido que venga del motor WASM
+      if (window.audioContext) {
+        window.audioContext.close();
+      }
+    } catch (error) {
+      console.error("Error cerrando AudioContext:", error);
     }
+    // ---------------------------------------
+
+    // 2. Quitar el script del DOM
+    const loaderScript = document.getElementById('ejs-loader');
+    if (loaderScript) loaderScript.remove();
+
+    // 3. Limpiar el contenedor
+    const container = document.getElementById('game-container');
+    if (container) {
+      container.innerHTML = "";
+      // A veces queda un Canvas huérfano, lo forzamos a desaparecer
+      const canvas = container.querySelector('canvas');
+      if (canvas) canvas.remove();
+    }
+
+    // 4. Limpiar variables globales
+    delete window.EJS_player;
+    delete window.EJS_core;
+    delete window.EJS_gameUrl;
+    delete window.EJS_startOnLoaded;
+    delete window.EJS_pathtodata;
+    
+    // IMPORTANTE: Asegúrate de que estas también mueran
+    window.EJS_emulator = null;
+    window.EJS_onGameStart = null; // Evita que se disparen eventos después de salir
+    
+    console.log("🧼 Memoria y Audio limpios");
   };
 }, [game.romUrl, game.system]);
 

@@ -1,7 +1,9 @@
 .container {
-  max-width: 1400px;
-  width: 95%;
-  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+  min-height: 100vh;
   margin: 0 auto;
   padding: 2rem;
   color: #f0f0f0;
@@ -38,3 +40,16 @@
   margin: 1rem;
 }
 
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 1.6rem;
+    text-align: center;
+    text-wrap: balance;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    text-align: justify;
+  }
+}

@@ -4,7 +4,7 @@ export default function PrivacyPage() {
   return (
     <main className={styles.container}>
       <h1 className={styles.title}>Política de <span>Privacidad</span></h1>
-      <p>Esta Política de Privacidad explica cómo Retro Gaming recopila, usa y protege tu información personal cuando usas nuestros servicios.</p>
+      <p>Esta Política de Privacidad explica cómo Retroscore recopila, usa y protege tu información personal cuando usas nuestros servicios.</p>
       <p><strong>Última Actualización:</strong> 01 de febrero de 2026</p>
 
       <div className={styles.section}>

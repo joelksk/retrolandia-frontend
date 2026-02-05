@@ -7,7 +7,7 @@ export default function AboutPage() {
       
       <div className={styles.section}>
         <h2>Nuestra Historia</h2>
-        <p>Retro Gaming Platform fue fundada en 2026 por un grupo de apasionados jugadores dedicados a preservar la rica historia de los videojuegos. Creemos que los juegos clásicos de las eras de 8 bits, 16 bits y los primeros 3D merecen ser experimentados por nuevas generaciones de jugadores, a la vez que permiten a los jugadores veteranos revivir sus preciados recuerdos de juego.</p>
+        <p>Retroscore fue fundada en 2026 por un grupo de apasionados jugadores dedicados a preservar la rica historia de los videojuegos. Creemos que los juegos clásicos de las eras de 8 bits, 16 bits y los primeros 3D merecen ser experimentados por nuevas generaciones de jugadores, a la vez que permiten a los jugadores veteranos revivir sus preciados recuerdos de juego.</p>
       </div>
 
       <div className={styles.section}>

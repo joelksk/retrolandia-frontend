@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 450px;
+  height: 500px;
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 3rem;
@@ -41,6 +41,7 @@
   margin-bottom: 1rem;
 }
 
+
 .title {
   font-size: 3.5rem;
   margin: 0;
@@ -78,4 +79,26 @@
   background: var(--text-main);
   color: var(--text-dark);
   box-shadow: 0 0 20px var(--primary);
+}
+
+
+@media (max-width: 768px) {
+  .badge {
+    font-size: 0.7rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .stats{
+    font-size: 0.7rem;
+  }
+
+  .playBtn{
+    font-size: 0.7rem;
+    padding: 0.5rem 1rem;
+    margin-top: 1.5rem;
+  }
 }

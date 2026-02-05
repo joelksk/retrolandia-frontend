@@ -8,6 +8,7 @@ import GameRanking from '@/components/GameRankings';
 import ScoreModal from '@/components/ModalScore/ScoreModal'
 import Loader from '@/components/loader/Loader'
 import StatusMessage from '@/components/statusMessage/StatusMessage';
+import ControlsGuide from '@/components/controls/ControlsGuide'
 
 const cleanName = (name) => {
   return decodeURIComponent(name).replace(/_/g, ' ').replace(/-/g, ' ');
@@ -27,9 +28,6 @@ const GameClientContent = ({initialGame}) => {
 
   useEffect(() => {
     const loadData = async () => {
-      // const res = await fetch(`${API_URL}/api/games/details/${slug}`);
-      // const data = await res.json();
-      // setGame(data.game);
       fetch(`${API_URL}/api/games/${game._id}/play`, { method: 'POST' });
     };
     if (slug){
@@ -106,6 +104,8 @@ const GameClientContent = ({initialGame}) => {
             </div>
         </aside>
       </div>
+
+      <ControlsGuide system={game.system} />
 
       <section className={styles.descriptionBox}>
         <h2>About {cleanName(game.title)}</h2>

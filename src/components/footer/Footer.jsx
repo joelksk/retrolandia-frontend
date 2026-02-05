@@ -13,8 +13,8 @@ const Footer = () => {
         
         <div className={styles.links}>
           <h4>Legal</h4>
-          <Link href="/privacity">Privacidad</Link>
-          <Link href="/terms">Términos</Link>
+          <a href="/privacity">Privacidad</a>
+          <a href="/terms">Términos</a>
         </div>
       </div>
     </footer>

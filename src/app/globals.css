@@ -23,7 +23,6 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,10 +30,30 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
+  scrollbar-gutter: stable;
+}
+
+main {
+display: flex;
+flex-direction: column;
+flex: 1;
 }
 
 h1 {
   color: var(--primary);
   text-shadow: 3px 3px var(--secondary);
 }
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 

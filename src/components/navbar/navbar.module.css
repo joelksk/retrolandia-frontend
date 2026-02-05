@@ -14,7 +14,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,6 +26,7 @@
   text-decoration: none;
   color: var(--text-main);
   letter-spacing: 2px;
+  flex: 1;
 }
 
 .logo span {
@@ -35,8 +36,11 @@
 
 .menu {
     display: flex;
+    flex: 2;
     gap: 2rem;
     align-items: center;
+    width: 100%;
+    justify-content: right;
 }
 
 .navLink {
@@ -59,4 +63,22 @@
   padding: 2px 8px;
   border-radius: 10px;
   margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+  .navLinks {
+    display: flex;
+    gap: 10px;
+    font-size: 0.7rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+    text-align: left;
+    margin-left: 1rem;
+  }
+
+  .container{
+        flex-wrap: wrap;
+  }
 }
