@@ -6,7 +6,7 @@ import Hero from '../components/hero/Hero'
 const API_URL = process.env.NEXT_PUBLIC_API_URL  || 'http://localhost:5000';
 
 const title = 'Donde la nostalgia se encuentra con la gloria'
-const description = 'Bienvenido a RetroScore, la plataforma definitiva para los amantes de los bits. Revive los clásicos que definieron una era, compite con jugadores de todo el mundo y reclama tu lugar en nuestro Salón de la Fama. Sin descargas, sin emuladores externos, solo tú y el mando';
+const description = 'RetroScore es la plataforma definitiva diseñada para transformar la nostalgia en competencia real, permitiéndote revivir los grandes clásicos de los videojuegos directamente desde tu navegador. Nuestro objetivo es centralizar la experiencia retro eliminando barreras técnicas y otorgando un valor real a tus logros a través de un sistema de Rankings Moderados, donde cada récord es validado manualmente para garantizar tablas legítimas y libre de trampas. Aquí, más que jugar, venís a inmortalizar tu habilidad, competir con una comunidad apasionada y reclamar tu lugar en las primeras posiciones';
 
 const Home = () => {
 
@@ -17,7 +17,6 @@ const Home = () => {
 return (
     <main className={styles.container}>
       <header className={styles.hero}>
-        <h1>{title}</h1>
         <p>{description}</p>
       </header>
       <Hero />

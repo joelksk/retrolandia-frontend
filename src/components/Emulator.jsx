@@ -72,9 +72,14 @@ const Emulator = forwardRef(({ game }, ref) => {
     window.EJS_pathtodata = '/Emulator/data/'
     window.EJS_startOnLoaded = false;
 
+    window.EJS_smoothing = false;      // Desactiva el suavizado (bilinear filtering). Se verá más pixelado pero corre MUCHO más rápido.
+    window.EJS_quality = 'low';        // Baja la calidad del renderizado.
+    window.EJS_pixelPerfect = false;   // Desactiva cálculos extra de escalado de imagen.
+    window.EJS_FrameSkip = 1; // Salta 1 de cada 2 cuadros. Es casi imperceptible en móviles y duplica el rendimiento.
+
     // ESTAS 3 SON LAS QUE ARREGLAN EL BUFFER:
     window.EJS_forceSync = true;
-    window.EJS_sampleRate = 44100;
+    window.EJS_sampleRate = 22050;
     window.EJS_volume = 1.0;
 
 

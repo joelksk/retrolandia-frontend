@@ -65,6 +65,15 @@
   margin-left: 10px;
 }
 
+.linkDisabled {
+  color: #666;
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  opacity: 0.5;
+  user-select: none;
+}
+
 @media (max-width: 600px) {
   .navLinks {
     display: flex;

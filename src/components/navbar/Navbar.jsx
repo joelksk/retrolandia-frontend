@@ -1,5 +1,4 @@
 "use client";
-import Link from 'next/link';
 import styles from './navbar.module.css';
 
 const Navbar = () => {
@@ -11,9 +10,12 @@ const Navbar = () => {
         </a>
         
         <div className={styles.menu}>
-          <a href="/" className={styles.navLink}>Inicio</a>
+          <a href="/" className={styles.navLink}>Juegos</a>
+            <span className={styles.linkDisabled}>
+              Online
+            </span>
           <a href="/about" className={styles.navLink}>Nosotros</a>
-          <span className={styles.badge}>v1.0.2</span>
+          <span className={styles.badge}>v1.0.3</span>
         </div>
       </div>
     </nav>

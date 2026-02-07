@@ -11,14 +11,14 @@ export async function middleware(req) {
     }
 
     try {
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+      const secret = new TextEncoder().encode(process.env.NEXT_JWT_SECRET);
       const { payload } = await jwtVerify(token, secret);
 
       if (payload.user.role !== 'admin') {
         return NextResponse.redirect(new URL('/', req.url));
       }
     } catch (error) {
-      // Si el token es falso o expiró, al login
+      console.error("JWT Verification failed:", error.message);
       return NextResponse.redirect(new URL('/login', req.url));
     }
   }
