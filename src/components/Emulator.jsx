@@ -24,18 +24,31 @@ const Emulator = forwardRef(({ game }, ref) => {
 
   const container = document.getElementById('game-container');
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const isiOS = /iPhone|iPod/i.test(navigator.userAgent); // Específicamente iPhone
 
   const enableFullscreen = () => {
-    
     if (isMobile && container) {
-      if (container.requestFullscreen) {
-        container.requestFullscreen();
-      } else if (container.webkitRequestFullscreen) { /* Safari/iOS */
-        container.webkitRequestFullscreen();
-      }
+        if (isiOS) {
+            // "TRUCO" PARA IPHONE: 
+            // Forzamos al contenedor a ocupar toda la pantalla visualmente
+            container.style.position = 'fixed';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100vw';
+            container.style.height = '100vh';
+            container.style.zIndex = '9999';
+            
+            // Intentamos ocultar la barra de direcciones haciendo un scroll mínimo
+            window.scrollTo(0, 1);
+        } else {
+            // Método estándar para Android y iPad
+            if (container.requestFullscreen) {
+                container.requestFullscreen();
+            } else if (container.webkitRequestFullscreen) {
+                container.webkitRequestFullscreen();
+            }
+        }
     }
-    // Una vez activado, removemos el listener para que no intente 
-    // entrar en fullscreen cada vez que el usuario presiona un botón táctil
     container.removeEventListener('click', enableFullscreen);
   };
 

@@ -74,7 +74,7 @@
   user-select: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 680px) {
   .navLinks {
     display: flex;
     gap: 10px;
@@ -90,4 +90,8 @@
   .container{
         flex-wrap: wrap;
   }
+
+  .menu {
+    gap: 1rem;
+}
 }
