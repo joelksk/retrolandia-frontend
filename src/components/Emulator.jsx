@@ -23,9 +23,9 @@ const Emulator = forwardRef(({ game }, ref) => {
   if (!game?.romUrl) return;
 
   const container = document.getElementById('game-container');
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   const enableFullscreen = () => {
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
     if (isMobile && container) {
       if (container.requestFullscreen) {
@@ -73,25 +73,28 @@ const Emulator = forwardRef(({ game }, ref) => {
     window.EJS_startOnLoaded = false;
 
     window.EJS_smoothing = false;      // Desactiva el suavizado (bilinear filtering). Se verá más pixelado pero corre MUCHO más rápido.
-    window.EJS_quality = 'low';        // Baja la calidad del renderizado.
-    window.EJS_pixelPerfect = false;   // Desactiva cálculos extra de escalado de imagen.
-    window.EJS_FrameSkip = 1; // Salta 1 de cada 2 cuadros. Es casi imperceptible en móviles y duplica el rendimiento.
+    window.EJS_quality = !isMobile ? 'high' : 'low';        // Baja la calidad del renderizado.
+    window.EJS_pixelPerfect = isMobile ? false : true;   // Desactiva cálculos extra de escalado de imagen.
+    window.EJS_FrameSkip = isMobile ? 2 : 1;
+    console.log("Iniciando frames mobiles...")
 
     // ESTAS 3 SON LAS QUE ARREGLAN EL BUFFER:
-    window.EJS_forceSync = true;
+    window.EJS_forceSync = isMobile ? false : true;
     window.EJS_sampleRate = 22050;
     window.EJS_volume = 1.0;
 
+    if (isMobile) {
+        window.EJS_adate = true;
+        window.EJS_waitBeforeStart = true;
+    }
 
-  
   // Cargamos el script
   const loader = document.createElement('script');
   loader.id = 'ejs-loader';
   loader.src = '/Emulator/data/loader.js'
   loader.async = true;
   document.body.appendChild(loader);
-
-  // 4. EL FIX DE LAS FLECHAS: 
+ 
     // Si después de 10 segundos el contenedor sigue vacío, 
     // es que el script falló por el historial de Chrome.
     const checkTimeout = setTimeout(() => {
@@ -118,50 +121,38 @@ const Emulator = forwardRef(({ game }, ref) => {
       console.warn("Error al terminar EJS:", e);
     }
 
-    // --- AGREGA ESTO AQUÍ PARA EL AUDIO ---
     try {
-      // EmulatorJS suele crear instancias globales de audio. 
-      // Vamos a buscar cualquier AudioContext activo en la ventana y cerrarlo.
       const audioContexts = [];
       
-      // Algunos navegadores exponen los contextos o los podemos capturar de la instancia
       if (window.EJS_emulator && window.EJS_emulator.audioContext) {
         window.EJS_emulator.audioContext.close();
       }
 
-      // Solución radical: Buscar y suspender el contexto de audio global si existe
-      // Esto mata cualquier sonido que venga del motor WASM
       if (window.audioContext) {
         window.audioContext.close();
       }
     } catch (error) {
       console.error("Error cerrando AudioContext:", error);
     }
-    // ---------------------------------------
 
-    // 2. Quitar el script del DOM
     const loaderScript = document.getElementById('ejs-loader');
     if (loaderScript) loaderScript.remove();
 
-    // 3. Limpiar el contenedor
     const container = document.getElementById('game-container');
     if (container) {
       container.innerHTML = "";
-      // A veces queda un Canvas huérfano, lo forzamos a desaparecer
       const canvas = container.querySelector('canvas');
       if (canvas) canvas.remove();
     }
 
-    // 4. Limpiar variables globales
     delete window.EJS_player;
     delete window.EJS_core;
     delete window.EJS_gameUrl;
     delete window.EJS_startOnLoaded;
     delete window.EJS_pathtodata;
-    
-    // IMPORTANTE: Asegúrate de que estas también mueran
+
     window.EJS_emulator = null;
-    window.EJS_onGameStart = null; // Evita que se disparen eventos después de salir
+    window.EJS_onGameStart = null;
     
     console.log("🧼 Memoria y Audio limpios");
   };

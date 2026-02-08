@@ -6,8 +6,8 @@ export default function AboutPage() {
       <h1 className={styles.title}>Sobre <span>Nosotros</span></h1>
       
       <div className={styles.section}>
-        <h2>Nuestra Historia</h2>
-        <p>Retroscore fue fundada en 2026 por un grupo de apasionados jugadores dedicados a preservar la rica historia de los videojuegos. Creemos que los juegos clásicos de las eras de 8 bits, 16 bits y los primeros 3D merecen ser experimentados por nuevas generaciones de jugadores, a la vez que permiten a los jugadores veteranos revivir sus preciados recuerdos de juego.</p>
+        <h2>Objetivos</h2>
+        <p>RetroScore es la plataforma definitiva diseñada para transformar la nostalgia en competencia real, permitiéndote revivir los grandes clásicos de los videojuegos directamente desde tu navegador. Nuestro objetivo es centralizar la experiencia retro eliminando barreras técnicas y otorgando un valor real a tus logros a través de un sistema de Rankings Moderados, donde cada récord es validado manualmente para garantizar tablas legítimas y libre de trampas. Aquí, más que jugar, venís a inmortalizar tu habilidad, competir con una comunidad apasionada y reclamar tu lugar en las primeras posiciones.</p>
       </div>
 
       <div className={styles.section}>

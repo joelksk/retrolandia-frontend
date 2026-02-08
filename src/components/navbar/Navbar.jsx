@@ -14,8 +14,11 @@ const Navbar = () => {
             <span className={styles.linkDisabled}>
               Online
             </span>
+            <span className={styles.linkDisabled}>
+              Scores
+            </span>
           <a href="/about" className={styles.navLink}>Nosotros</a>
-          <span className={styles.badge}>v1.0.3</span>
+          <span className={styles.badge}>v1.0.4</span>
         </div>
       </div>
     </nav>
