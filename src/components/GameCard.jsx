@@ -22,7 +22,7 @@ const GameCard = ({ game }) =>{
 
       <div className={styles.content}>
         <h3 className={styles.title} title={game.title}>
-          {dislpayName(game.slug)}
+          {dislpayName(game.title)}
         </h3>
         
         <div className={styles.stats}>

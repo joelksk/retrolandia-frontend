@@ -1,5 +1,5 @@
 
 export const dislpayName = (slug) => {
-    let display = slug.replaceAll('-', ' ');
+    let display = slug.replaceAll('_', ' ');
     return display;
 }

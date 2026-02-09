@@ -25,7 +25,7 @@ const Hero = () => {
       <img src={featured.image} alt={featured.title} className={styles.image} />
       <div className={styles.overlay}>
         <span className={styles.badge}>Lo mas jugado</span>
-        <h1 className={styles.title}>{dislpayName(featured.slug)}</h1>
+        <h1 className={styles.title}>{dislpayName(featured.title)}</h1>
         <p className={styles.stats}>⭐ {featured.rating?.average?.toFixed(1)}  |  🎮 {featured.playCount} veces jugado</p>
         <Link href={`/juego/${featured.slug}`} className={styles.playBtn}>
           Jugar Ahora
