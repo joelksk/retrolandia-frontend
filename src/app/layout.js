@@ -16,12 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: {
-    default: 'RetroScore- Tu Paraíso Retro',
-    template: '%s | RetroScore'
-  },
-  description: 'Juega a los mejores clásicos de NES, Sega y SNES y muchas consolas mas, totalmente gratis.',
-  keywords: ['retro games', 'emulator online', 'juegos clásicos', 'NES online'],
+  title: 'RetroScore | Juega Clásicos Online y Domina el Ranking',
+  description: 'La plataforma definitiva para amantes de lo retro en Argentina. Juega juegos clásicos de NES, SNES y más, sube tu récord y compite por el primer puesto en nuestro ranking global.',
+  keywords: 'juegos retro, emulador online, ranking de videojuegos, snes online, nes online, juegos clásicos gratis, competir online retro',
   authors: [{ name: 'Joel' }],
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   alternates: {
@@ -30,6 +27,30 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+
+  openGraph: {
+    title: 'RetroScore - ¿Sos el mejor en los clásicos?',
+    description: 'Jugá, subí tu captura y demostrá que sos el Rey de los 8 y 16 bits. ¡Entrá al ranking de RetroScore!',
+    url: process.env.NEXT_PUBLIC_SITE_URL,
+    siteName: 'RetroScore Argentina',
+    images: [
+      {
+        url: '/imgs/banner.png',
+        width: 1200,
+        height: 630,
+        alt: 'RetroScore - Competencia de Juegos Retro',
+      },
+    ],
+    locale: 'es_AR',
+    type: 'website',
+  },
+
+  twitter: {
+    card: 'summary_large_image',
+    title: 'RetroScore | El Podio de los Gamers Retro',
+    description: '¿Tenés lo que hace falta para estar en el Top 1? Competí en RetroScore.',
+    images: ['/imgs/banner.png'],
   },
 }
 

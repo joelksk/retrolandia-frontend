@@ -83,22 +83,38 @@
 
 
 @media (max-width: 768px) {
+
+  .hero {
+    height: 300px;
+  }
+
+  .overlay {
+    padding: 0 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 20%, transparent 100%);
+    align-items: center; 
+    text-align: center; 
+  }
+
   .badge {
-    font-size: 0.7rem;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%); /* Centramos el badge de plataforma */
+    font-size: 0.8rem;
   }
 
   .title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    margin-top: 2rem;
   }
 
   .stats{
-    font-size: 0.7rem;
+    font-size: 0.8rem;
+    width: auto;
   }
 
   .playBtn{
-    font-size: 0.7rem;
-    padding: 0.5rem 1rem;
-    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
   }
 }

@@ -10,13 +10,26 @@ export const generateMetadata = async ({ params }) => {
   if (!game) return { title: "Juego no encontrado | RetroScore" };
 
   return {
-    title: `${game.title} - Jugar Online | RetroScore`,
-    description: game.description || `Juega a ${game.title} en RetroScore.`,
+    title: `${game.title} | RetroScore`,
+    description: `Supera los récords en ${game.title}. Juega gratis, sube tu captura y reclama tu lugar en el podio de RetroScore.`,
     openGraph: {
       title: `🕹️ ¡A jugar ${game.title}!`,
-      images: [game.image],
+      images: [
+        {
+          url: game.image,
+          width: 1200,
+          height: 630,
+          alt: `Jugar ${game.title} en RetroScore`,
+        }
+      ],
       type: 'website',
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: game.title,
+      description: '¿Podrás superar el récord actual?',
+      images: [game.image],
+    }
   };
 }
 

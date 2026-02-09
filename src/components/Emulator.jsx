@@ -219,16 +219,16 @@ const Emulator = forwardRef(({ game }, ref) => {
  
     // Si después de 10 segundos el contenedor sigue vacío, 
     // es que el script falló por el historial de Chrome.
-    const checkTimeout = setTimeout(() => {
-      const container = document.getElementById('game-container');
-      if (container && container.innerHTML === "") {
-        console.warn("Emulador bloqueado por historial. Forzando refresco...");
-        window.location.reload(); // Recarga física para limpiar la memoria de WASM
-      }
-    }, 10000);
+    // const checkTimeout = setTimeout(() => {
+    //   const container = document.getElementById('game-container');
+    //   if (container && container.innerHTML === "") {
+    //     console.warn("Emulador bloqueado por historial. Forzando refresco...");
+    //     window.location.reload(); // Recarga física para limpiar la memoria de WASM
+    //   }
+    // }, 30000);
 
     return () => {
-    clearTimeout(checkTimeout);
+    // clearTimeout(checkTimeout);
 
     // --- DESBLOQUEAR SCROLL ---
     document.body.style.overflow = 'auto';

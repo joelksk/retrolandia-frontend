@@ -5,7 +5,7 @@ export  const robots = () => {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/api/',
+      disallow: '/admin/',
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };

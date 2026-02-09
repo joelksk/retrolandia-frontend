@@ -10,15 +10,15 @@ const Navbar = () => {
         </a>
         
         <div className={styles.menu}>
-          <a href="/" className={styles.navLink}>Juegos</a>
-            <span className={styles.linkDisabled}>
-              Online
-            </span>
-            <span className={styles.linkDisabled}>
-              Scores
-            </span>
-          <a href="/about" className={styles.navLink}>Nosotros</a>
-          <span className={styles.badge}>v1.0.4</span>
+            <a href="/" className={styles.navLink}>Juegos</a>
+            <span className={styles.linkDisabled}>Online</span>
+            <span className={styles.linkDisabled}>Scores</span>
+            <a href="/about" className={styles.navLink}>Nosotros</a>
+            {/* <span className={styles.badge}>v1.0.4</span> */}
+            <a href="https://cafecito.app/retroscore" className={styles.imgCafecitoContainer} target="_blank" rel="noopener noreferrer">
+              <img src="/imgs/buy_me_a_coffe.png" alt="Buy me a Coffe" className={styles.imgCafecitoDesktop}/>
+              <img src="/imgs/buy_me_a_coffe_mobile.jpg" alt="Buy me a Coffe" className={styles.imgCafecitoMobile}/>
+            </a>
         </div>
       </div>
     </nav>
