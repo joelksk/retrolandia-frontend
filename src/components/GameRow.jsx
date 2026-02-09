@@ -14,7 +14,7 @@ const  GameRow = ({ title, platform }) => {
 
   useEffect(() => {
     const fetchGames = async () => {
-      const res = await fetch(`${API_URL}/api/games?platform=${platform}&limit=10`);
+      const res = await fetch(`${API_URL}/api/games?platform=${platform}&limit=5&sort=playCount`);
       const data = await res.json();
       setGames(data);
     };

@@ -102,7 +102,15 @@ const ScoreModal = ({ isOpen, onClose, screenshot, game, setBg }) => {
           </div>
 
           <div className={styles.field}>
-            <label className={styles.label}>Clave Segura</label>
+            <div className={styles.labelWrapper}>
+              <label className={styles.label}>PIN</label>
+              <div className={styles.tooltipContainer}>
+                <span className={styles.helpIcon}>?</span>
+                <span className={styles.tooltipText}>
+                  Este PIN protege tus puntos guardados. No lo olvides, asi solo tu podras modificar los puntos en las tablas.
+                </span>
+              </div>
+            </div>
             <input
               className={styles.input}
               type="password"

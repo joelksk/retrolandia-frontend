@@ -7,6 +7,8 @@ import Loader from '@/components/loader/Loader'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
+
+
 const PlatformPage = () => {
   const { name } = useParams(); 
   const [games, setGames] = useState([]);

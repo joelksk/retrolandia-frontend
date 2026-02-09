@@ -3,20 +3,127 @@ import { useEffect, forwardRef } from "react"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
-const myControls = [
-    { value: 50, value2: "BUTTON_2" },           // 2 -> B (NES/Sega)
-    { value: 52, value2: "BUTTON_4" },           // 4 -> X (SNES/Sega)
-    { value: 16, value2: "SELECT" },             // Shift -> Select
-    { value: 13, value2: "START" },              // Enter -> Start
-    { value: 87, value2: "DPAD_UP" },            // W -> Arriba
-    { value: 83, value2: "DPAD_DOWN" },          // S -> Abajo
-    { value: 65, value2: "DPAD_LEFT" },          // A -> Izquierda
-    { value: 68, value2: "DPAD_RIGHT" },         // D -> Derecha
-    { value: 49, value2: "BUTTON_1" },           // 1 -> A (NES/Sega)
-    { value: 51, value2: "BUTTON_3" },           // 3 -> Y (SNES/Sega)
-    { value: 53, value2: "LEFT_TOP_SHOULDER" },  // 5 -> L (SNES) / C (Sega)
-    { value: 54, value2: "RIGHT_TOP_SHOULDER" } // 6 -> R (SNES) / Z (Sega)
-];
+const myControls = {
+        0: {
+            0: {
+                'value': 'numpad 2', //B
+                'value2': 'BUTTON_2'
+            },
+            1: {
+                'value': 'numpad 1', //A
+                'value2': 'BUTTON_4'
+            },
+            2: {
+                'value': 'v',
+                'value2': 'SELECT'
+            },
+            3: {
+                'value': 'enter',
+                'value2': 'START'
+            },
+            4: {
+                'value': 'w', //w
+                'value2': 'DPAD_UP'
+            },
+            5: {
+                'value': 's', //s
+                'value2': 'DPAD_DOWN'
+            },
+            6: {
+                'value': 'a', //a
+                'value2': 'DPAD_LEFT'
+            },
+            7: {
+                'value': 'd', //d
+                'value2': 'DPAD_RIGHT'
+            },
+            8: {
+                'value': 'numpad 3', //C
+                'value2': 'BUTTON_1'
+            },
+            9: {
+                'value': 'numpad 4', //X
+                'value2': 'BUTTON_3'
+            },
+            10: {
+                'value': 'numpad 5', //Y
+                'value2': 'LEFT_TOP_SHOULDER'
+            },
+            11: {
+                'value': 'numpad 6', //Z
+                'value2': 'RIGHT_TOP_SHOULDER'
+            },
+            12: {
+                'value': 'tab',
+                'value2': 'LEFT_BOTTOM_SHOULDER'
+            },
+            13: {
+                'value': 'r',
+                'value2': 'RIGHT_BOTTOM_SHOULDER'
+            },
+            14: {
+                'value': '',
+                'value2': 'LEFT_STICK',
+            },
+            15: {
+                'value': '',
+                'value2': 'RIGHT_STICK',
+            },
+            16: {
+                'value': 'h',
+                'value2': 'LEFT_STICK_X:+1'
+            },
+            17: {
+                'value': 'f',
+                'value2': 'LEFT_STICK_X:-1'
+            },
+            18: {
+                'value': 'g',
+                'value2': 'LEFT_STICK_Y:+1'
+            },
+            19: {
+                'value': 't',
+                'value2': 'LEFT_STICK_Y:-1'
+            },
+            20: {
+                'value': 'l',
+                'value2': 'RIGHT_STICK_X:+1'
+            },
+            21: {
+                'value': 'j',
+                'value2': 'RIGHT_STICK_X:-1'
+            },
+            22: {
+                'value': 'k',
+                'value2': 'RIGHT_STICK_Y:+1'
+            },
+            23: {
+                'value': 'i',
+                'value2': 'RIGHT_STICK_Y:-1'
+            },
+            24: {
+                'value': '1'
+            },
+            25: {
+                'value': '2'
+            },
+            26: {
+                'value': '3'
+            },
+            27: {
+                'value': 'add'
+            },
+            28: {
+                'value': 'space'
+            },
+            29: {
+                'value': 'subtract'
+            },
+        },
+        1: {},
+        2: {},
+        3: {}
+    }
 const Emulator = forwardRef(({ game }, ref) => {
 
     useEffect(() => {
@@ -100,6 +207,8 @@ const Emulator = forwardRef(({ game }, ref) => {
         window.EJS_adate = true;
         window.EJS_waitBeforeStart = true;
     }
+
+    window.EJS_defaultControls = myControls;
 
   // Cargamos el script
   const loader = document.createElement('script');
