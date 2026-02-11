@@ -148,7 +148,117 @@
     box-shadow: 0 0 20px var(--secondary);
 }
 
-/* Modal de imagen completa */
+.catalogHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.searchBox {
+    display: flex;
+    gap: 10px;
+}
+
+.globalActions {
+    display: flex;
+    gap: 10px;
+}
+
+.adminInput, .adminSelect {
+    padding: 0.6rem;
+    background: var(--bg-dark);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    border-radius: 4px;
+    
+}
+
+.syncBtn, .rawgBtn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+}
+
+.syncBtn, .rawgBtn { background: var(--primary); color: var(--text-dark); }
+
+.syncBtn:hover, .rawgBtn:hover {
+    background: var(--text-main);
+    box-shadow: 0 0 20px var(--primary);
+    color: var(--text-dark);
+}
+
+.catalogList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 1rem;
+}
+
+.gameRow {
+    display: flex;
+    align-items: center;
+    background: var(--bg-card);
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    gap: 15px;
+}
+
+.miniImg {
+    width: 50px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.gameInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.gameName {
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.gameSystem {
+    font-size: 0.75rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.multiTag {
+    background: #443300;
+    color: #ffcc00;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #ffcc00;
+}
+
+.editBtn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.editBtn:hover {
+    background: var(--primary);
+    color: black;
+}
+
 .modalOverlay {
     position: fixed;
     top: 0;
@@ -256,4 +366,141 @@
     color: #00ffcc;
     font-size: 0.8rem;
     text-transform: uppercase;
+}
+
+/* Overlay para oscurecer el fondo */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Caja del Modal */
+.editModal {
+    background: #111;
+    border: 2px solid #333;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.modalTitle {
+    margin-top: 0;
+    color: var(--primary);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.slugNote {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-family: monospace;
+}
+
+/* Grupos de formulario */
+.formField {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 1.2rem;
+}
+
+.formField label {
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #aaa;
+}
+
+.formField input, .textarea, .select {
+    background: #1a1a1a;
+    border: 1px solid #444;
+    padding: 10px;
+    color: white;
+    border-radius: 6px;
+    outline: none;
+}
+
+.formField input:focus {
+    border-color: var(--primary);
+}
+
+/* Previsualización de imagen corregida */
+.previewContainer {
+    margin-top: 10px;
+    width: 100%;
+    height: 150px;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px dashed #444;
+}
+
+.editPreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Checkbox estilizado */
+.checkField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 1.5rem 0;
+    cursor: pointer;
+}
+
+.checkField input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+/* Botones del Modal */
+.modalButtons {
+    display: flex;
+    gap: 12px;
+    margin-top: 2rem;
+}
+
+.saveBtn {
+    flex: 2;
+    background: var(--primary);
+    color: black;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.saveBtn:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 15px var(--primary);
+}
+
+.cancelBtn {
+    flex: 1;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.cancelBtn:hover {
+    background: #444;
 }
