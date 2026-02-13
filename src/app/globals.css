@@ -23,9 +23,9 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   min-height: 100vh;
   text-align: center;
   display: flex;
@@ -37,6 +37,8 @@ main {
 display: flex;
 flex-direction: column;
 flex: 1;
+min-height: 100vh;
+overflow-x: clip;
 }
 
 h1 {
@@ -46,7 +48,7 @@ h1 {
 
 html, body {
   max-width: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;

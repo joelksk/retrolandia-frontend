@@ -20,6 +20,13 @@
   letter-spacing: 1px;
 }
 
+.gameRowFooter {
+  display: flex;
+  align-content: center;
+  justify-content: end;
+  margin-top: 1rem;
+}
+
 .viewAll {
   color: var(--primary);
   text-shadow: 3px 3px var(--secondary);
@@ -27,7 +34,6 @@
   font-weight: 800;
   font-size: 0.9rem;
   transition: var(--transition);
-
 }
 
 .viewAll:hover {

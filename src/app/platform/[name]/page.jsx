@@ -6,48 +6,67 @@ import GameCard from '@/components/GameCard';
 import Loader from '@/components/loader/Loader'
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const cleanName = (name) => {
+  return decodeURIComponent(name)
+    .replace(/\s+/g, '_')
+};
 
-
+const PLATFORMS = {
+  NES: 'https://www.emu-land.net/uploads/subcat_8.jpg',
+  SNES: 'https://www.emu-land.net/uploads/subcat_16.JPG',
+  Sega_Genesis: 'https://www.emu-land.net/uploads/subcat_15.jpg' ,
+}
 
 const PlatformPage = () => {
   const { name } = useParams(); 
   const [games, setGames] = useState([]);
-  const [filteredGames, setFilteredGames] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [activeLetter, setActiveLetter] = useState('');
 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   useEffect(() => {
-    const fetchAllGames = async () => {
-      const res = await fetch(`${API_URL}/api/games?platform=${name}`);
-      const data = await res.json();
-      setGames(data);
-      setFilteredGames(data);
+    const fetchGames = async () => {
+      setLoading(true);
+      let url = `${API_URL}/api/games?platform=${name}&page=${currentPage}`;
+      if (activeLetter) url += `&char=${activeLetter}`;
+      
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        setGames(data.games || []);
+        setTotalPages(data.totalPages || 1);
+      } catch (error) {
+        console.error("Error fetching games:", error);
+      } finally {
+        setLoading(false);
+      }
     };
-    if (name) fetchAllGames();
-  }, [name]);
 
-  useEffect(() => {
-    let result = games;
+    if (name) fetchGames();
+  }, [name, activeLetter, currentPage]);
 
-    if (activeLetter) {
-      result = result.filter(g => g.firstLetter === activeLetter);
-    }
+  const filteredGames = games.filter(g => 
+    g.title.toLowerCase().includes(search.toLowerCase())
+  );
 
-    if (search) {
-      result = result.filter(g => 
-        g.title.toLowerCase().includes(search.toLowerCase())
-      );
-    }
+  const handleLetterChange = (letter) => {
+  setActiveLetter(letter);
+  setCurrentPage(1);
+};
 
-    setFilteredGames(result);
-  }, [search, activeLetter, games]);
-
-    if(games.length == 0) return (<Loader message="Encendiendo Consola..." />)
+    if(loading && games.length == 0) return (<Loader message="Encendiendo Consola..." />)
 
   return (
     <main className={styles.container}>
+      {/* Fondo dinámico de RAWG */}
+        <div 
+          className={styles.heroBackground} 
+            style={{ backgroundImage: `url(${PLATFORMS[cleanName(name)]})`}}
+        ></div>
       <header className={styles.header}>
         <h1>{decodeURIComponent(name).toUpperCase()}</h1>
       </header>
@@ -74,7 +93,7 @@ const PlatformPage = () => {
             <button 
               key={l}
               className={activeLetter === l ? styles.activeLetter : styles.letterBtn}
-              onClick={() => setActiveLetter(l)}
+              onClick={() => handleLetterChange(l)}
             >
               {l}
             </button>
@@ -82,14 +101,43 @@ const PlatformPage = () => {
         </div>
       </section>
 
-      <div className={styles.grid}>
+      <div className={`${styles.grid} ${loading ? styles.loadingGrid : ''}`}>
         {filteredGames.map(game => (
           <GameCard key={game._id} game={game} />
         ))}
       </div>
+
+      {/**PAGINACION */}
+      <div className={styles.pagination}>
+          <button 
+            disabled={currentPage === 1} 
+            onClick={() => {
+              setCurrentPage(prev => prev - 1);
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className={styles.pageBtn}
+          >
+            Anterior
+          </button>
+
+          <span className={styles.pageInfo}>
+            Página {currentPage} de {totalPages}
+          </span>
+
+          <button 
+            disabled={currentPage === totalPages} 
+            onClick={() => {
+              setCurrentPage(prev => prev + 1);
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className={styles.pageBtn}
+          >
+            Siguiente
+          </button>
+        </div>
       
-      {filteredGames.length === 0 && (
-        <p style={{ textAlign: 'center' }}>No games found with those filters.</p>
+      {!loading && filteredGames.length === 0 && (
+        <p style={{ textAlign: 'center', marginTop: '20px' }}>No se encontraron juegos.</p>
       )}
     </main>
   );

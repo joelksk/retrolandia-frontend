@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import ReportWidget from "@/components/widgets/ReportWidget";
+// import DonationModal from '@/components/donationModal/DonationModal'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,16 +61,23 @@ export const viewport = {
   initialScale: 1,
 }
 
+
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body >
-        <Navbar />
-          <main>
+        <Navbar /> 
+          <main> 
             {children}
             <ReportWidget />
           </main>
         <Footer />
+        {/* <DonationModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)} 
+          onConfirm={confirmDonation} 
+        /> */}
       </body>
       <GoogleAnalytics gaId="G-KSB13RR93N" />
     </html>

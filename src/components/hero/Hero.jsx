@@ -6,16 +6,18 @@ import { dislpayName } from '@/utils/utils.js';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
-const Hero = () => {
+const Hero = ({onLoaded}) => {
   const [featured, setFeatured] = useState(null);
 
   useEffect(() => {
     const fetchFeatured = async () => {
       const res = await fetch(`${API_URL}/api/games?sort=playCount&limit=1`);
       const data = await res.json();
-      if (data.length > 0) setFeatured(data[0]);
+      if (data.games.length > 0) setFeatured(data.games[0]);
+      console.log(data)
     };
     fetchFeatured();
+    onLoaded()
   }, []);
 
   if (!featured) return null;

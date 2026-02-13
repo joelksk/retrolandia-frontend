@@ -22,14 +22,28 @@ export default function AdminPage() {
         isMultiplayer: false,
         rankingType: ''
         });
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const [totalGames, setTotalGames] = useState(0)
 
     useEffect(() => {
         fetch(`${API_URL}/api/admin/pending-ranking`).then(res => res.json()).then(data => setSubmissions(data));
         fetch(`${API_URL}/api/admin/reports`).then(res => res.json()).then(data => setReports(data));
         fetch(`${API_URL}/api/admin/suggestions`).then(res => res.json()).then(data => setSuggestions(data));
-        fetch(`${API_URL}/api/games`).then(res => res.json()).then(data => setGames(data));
     }, []);
+
+    useEffect (() => {
+        const fetchData = async () => {
+        const newplatform = filterPlatform == 'all' ? `page=${currentPage}` : `platform=${filterPlatform}&page=${currentPage}` 
+        fetch(`${API_URL}/api/games?full=true&${newplatform}`).then(res => res.json()).then(data => {
+            setGames(data.games)
+            setTotalPages(data.totalPages || 1);
+            setTotalGames(data.totalGames)
+        })
+        } ;
+        fetchData();
+    }, [currentPage, filterPlatform])
 
     const handleApprove = async (id) => {
         const response = await fetch(`${API_URL}/api/admin/approve/${id}`, { method: 'POST' });
@@ -125,6 +139,11 @@ export default function AdminPage() {
         }
     }
 
+    const handleFilterPlatform = (platform) => {
+        setFilterPlatform(platform);
+        setCurrentPage(1)
+    }
+
     return (
         <div className={styles.adminWrapper}>
             <h1 className={styles.title}>Centro de Control - v1.1</h1>
@@ -141,7 +160,7 @@ export default function AdminPage() {
                     🎮 Pedidos ({suggestions.length})
                 </button>
                 <button onClick={() => setActiveTab('catalog')} className={activeTab === 'catalog' ? styles.activeTab : ''}>
-                    📂 Catálogo ({games.length})
+                    📂 Catálogo ({totalGames})
                 </button>
             </div>
 
@@ -216,13 +235,13 @@ export default function AdminPage() {
                                     />
                                     <select 
                                         value={filterPlatform} 
-                                        onChange={(e) => setFilterPlatform(e.target.value)}
+                                        onChange={(e) => handleFilterPlatform(e.target.value)}
                                         className={styles.adminSelect}
                                     >
                                         <option value="all">Sistemas</option>
-                                        <option value="nes">Nintendo</option>
-                                        <option value="snes">Super Nintendo</option>
-                                        <option value="segaMD">Sega Genesis</option>
+                                        <option value="NES">Nintendo</option>
+                                        <option value="SNES">Super Nintendo</option>
+                                        <option value="Sega Genesis">Sega Genesis</option>
                                     </select>
                                 </div>
                                 
@@ -241,7 +260,7 @@ export default function AdminPage() {
                                 {games
                                     .filter(game => 
                                         game.title.toLowerCase().includes(search.toLowerCase()) && 
-                                        (filterPlatform === 'all' || game.system === filterPlatform)
+                                        (filterPlatform === 'all' || game.platform === filterPlatform)
                                     )
                                     .map(game => (
                                         <div key={game._id} className={styles.gameRow}>
@@ -266,9 +285,41 @@ export default function AdminPage() {
                                     ))
                                 }
                             </div>
+
+                            {/**PAGINACION */}
+                        <div className={styles.pagination}>
+                            <button 
+                                disabled={currentPage === 1} 
+                                onClick={() => {
+                                setCurrentPage(prev => prev - 1);
+                                window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                                className={styles.pageBtn}
+                            >
+                                Anterior
+                            </button>
+                    
+                            <span className={styles.pageInfo}>
+                                Página {currentPage} de {totalPages}
+                            </span>
+                    
+                            <button 
+                                disabled={currentPage === totalPages} 
+                                onClick={() => {
+                                setCurrentPage(prev => prev + 1);
+                                window.scrollTo({ top: 0, behavior: 'smooth' })
+                                }}
+                                className={styles.pageBtn}
+                            >
+                                Siguiente
+                            </button>
                         </div>
+
+                    </div>
                     )}
+
             </div>
+
 
             {/**MODAL DE EDICION DE JUEGO */}
             {editingGame && (

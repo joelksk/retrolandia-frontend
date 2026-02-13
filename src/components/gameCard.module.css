@@ -92,5 +92,4 @@
 .playBtn:hover {
   background: var(--text-main);
   box-shadow: 0 0 20px var(--primary);
-  color: var(--text-dark);
 }

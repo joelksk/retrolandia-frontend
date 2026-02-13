@@ -47,7 +47,7 @@ const GameClientContent = ({initialGame}) => {
 
     const capture = () => {
         try {
-            const imageData = canvas.toDataURL("image/png");
+            const imageData = canvas.toDataURL("image/jpeg', 0.7");
             
             if (imageData && imageData.length > 1000) {
                 setScreenshot(imageData);
@@ -72,14 +72,14 @@ const GameClientContent = ({initialGame}) => {
   return (
     <main className={styles.container}>
       {/* Fondo dinámico de RAWG */}
-    <div 
-      className={styles.heroBackground} 
-      style={{ backgroundImage: `url(${game.image})`}}
-    ></div>
-      <header className={styles.header}>
-        <p className={styles.platform}>{game.platform}</p>
-        <h1 className={styles.title}>{cleanName(game.title)}</h1>
-      </header>
+      <div 
+        className={styles.heroBackground} 
+        style={{ backgroundImage: `url(${game.image})`}}
+      ></div>
+        <header className={styles.header}>
+          <p className={styles.platform}>{game.platform}</p>
+          <h1 className={styles.title}>{cleanName(game.title)}</h1>
+        </header>
 
       {/* 2. LAYOUT DE JUEGO */}
       <div className={styles.mainLayout}>
@@ -101,6 +101,12 @@ const GameClientContent = ({initialGame}) => {
             <GameRanking gameId={game._id} />
             <div className={styles.btnScoreContainer}>
                 <button className={styles.btnSCore} onClick={handleSaveScore}>Guardar Score</button>
+                <div className={styles.tooltipContainer}>
+                  <span className={styles.helpIcon}>?</span>
+                  <span className={styles.tooltipText}>
+                    Para guardar el score, debes ingresar el puntaje final durante el juego. Estamos trabajando para que sea automatico, disculpe las molestias.
+                  </span>
+              </div>
             </div>
         </aside>
       </div>

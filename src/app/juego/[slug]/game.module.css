@@ -81,6 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 1rem;
   z-index: 9999;
 }
 
@@ -101,6 +102,60 @@
   background: #fff;
   box-shadow: 0 0 20px #ffcc00;
   
+}
+
+.tooltipContainer {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.helpIcon {
+  background: var(--primary); /* Color de fondo del circulito */
+  color: var(--text-dark);
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.tooltipText {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  pointer-events: none; 
+  box-shadow: 0px 4px 10px var(--text-dark)
+}
+
+.tooltipText::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+.tooltipContainer:hover .tooltipText {
+  visibility: visible;
+  opacity: 1;
 }
 
 @media (max-width: 1100px) {

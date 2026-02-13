@@ -504,3 +504,61 @@
 .cancelBtn:hover {
     background: #444;
 }
+
+/* Contenedor principal de la paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 40px 0;
+  padding: 20px;
+  background:var(--bg-card);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.pageBtn {
+  background: var(--primary);
+  color: var(--text-dark);
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background: var(--text-main);
+  box-shadow: 0 0 20px var(--primary);
+}
+
+/* Estado deshabilitado (cuando no hay más páginas) */
+.pageBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+/* Información de "Página X de Y" */
+.pageInfo {
+  color: #eee;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px 15px;
+  border-radius: 4px;
+}
+
+/* Opcional: un efecto sutil para el grid cuando cambia de página */
+.loadingGrid {
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
