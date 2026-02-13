@@ -1,5 +1,4 @@
 .container {
-  width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   display: flex;
@@ -28,6 +27,7 @@
   flex-direction: column;
   gap: 1.5rem;
   border: 1px solid var(--border);
+  align-self: anchor-center;
 }
 
 .searchWrapper {
@@ -94,6 +94,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 2rem;
+  width: 90%;
+  max-width: 100vw; /* Evita el scroll horizontal */
+  box-sizing: border-box;
+  margin: auto;
 }
 
 /* Contenedor principal de la paginación */
@@ -102,7 +106,7 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin: 40px 0;
+  margin:  5rem auto;
   padding: 20px;
   background:var(--bg-card);
   border-radius: 8px;
@@ -187,5 +191,13 @@
   .container {
   max-width: 1200px;
 }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    display: grid;
+  }
+
+
 
 }

@@ -70,4 +70,14 @@
     margin: 0 auto;
     width: 100%;
   }
+
+  .gameRowFooter {
+  justify-content: center;
+  margin-left: 15rem;
+}
+
+.header {
+  justify-content: center;
+}
+
 }

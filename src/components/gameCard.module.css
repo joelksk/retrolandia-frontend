@@ -7,19 +7,22 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
 }
 
 .imageContainer {
   width: 100%;
   aspect-ratio: 4/3;
   overflow: hidden;
+  position: relative;
   background: var(--text-dark);
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover; /* Esto hace que la imagen se adapte sin deformarse */
+  display: block;
 }
 
 .platformBadge {
