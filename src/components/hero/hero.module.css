@@ -7,6 +7,7 @@
   margin-bottom: 3rem;
   background-color: #000;
   border: 1px solid var(--border);
+  margin: auto;
 }
 
 .image {
@@ -103,18 +104,18 @@
   }
 
   .title {
-    font-size: 2rem;
+    font-size:1.2rem;
     margin-top: 2rem;
   }
 
   .stats{
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     width: auto;
   }
 
   .playBtn{
     font-size: 0.9rem;
-    padding: 0.8rem 1.5rem;
+    padding: 0.6rem 1.2rem;
     margin-top: 1rem;
   }
 }
