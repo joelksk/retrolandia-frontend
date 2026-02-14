@@ -21,7 +21,7 @@ export const metadata = {
   description: 'La plataforma definitiva para amantes de lo retro en Argentina. Juega juegos clásicos de NES, SNES y más, sube tu récord y compite por el primer puesto en nuestro ranking global.',
   keywords: 'juegos retro, emulador online, ranking de videojuegos, snes online, nes online, juegos clásicos gratis, competir online retro',
   authors: [{ name: 'Joel' }],
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL('https://www.retroscore.com.ar' || 'http://localhost:3000'),
   alternates: {
     canonical: '/',
   },
@@ -33,7 +33,7 @@ export const metadata = {
   openGraph: {
     title: 'RetroScore - ¿Sos el mejor en los clásicos?',
     description: 'Jugá, subí tu captura y demostrá que sos el Rey de los 8 y 16 bits. ¡Entrá al ranking de RetroScore!',
-    url: process.env.NEXT_PUBLIC_SITE_URL,
+    url: 'https://www.retroscore.com.ar',
     siteName: 'RetroScore Argentina',
     images: [
       {
