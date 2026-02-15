@@ -10,14 +10,18 @@ const Hero = ({onLoaded}) => {
   const [featured, setFeatured] = useState(null);
 
   useEffect(() => {
-    const fetchFeatured = async () => {
+    try {
+      const fetchFeatured = async () => {
       const res = await fetch(`${API_URL}/api/games?sort=playCount&limit=1`);
       const data = await res.json();
       if (data.games.length > 0) setFeatured(data.games[0]);
-      console.log(data)
     };
-    fetchFeatured();
-    onLoaded()
+    fetchFeatured();      
+    } catch (error) {
+      console.log(error);
+    }finally{
+        onLoaded()
+    }
   }, []);
 
   if (!featured) return null;

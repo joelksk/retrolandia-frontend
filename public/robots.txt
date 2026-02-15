@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://retroscore.com.ar/sitemap.xml

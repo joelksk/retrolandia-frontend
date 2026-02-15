@@ -114,7 +114,7 @@ const GameClientContent = ({initialGame}) => {
       <ControlsGuide system={game.system} />
 
       <section className={styles.descriptionBox}>
-        <h2>About {cleanName(game.title)}</h2>
+        <h2>Acerca de {cleanName(game.title)}</h2>
         <p>{game.description || "Loading description from database..."}</p>
       </section>
 

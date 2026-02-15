@@ -12,7 +12,8 @@ const  GameRow = ({ title, platform, onLoaded }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchGames = async () => {
+    try {
+      const fetchGames = async () => {
       const res = await fetch(`${API_URL}/api/games?platform=${platform}&limit=5&sort=playCount`);
       const data = await res.json();
       setGames(data.games);
@@ -20,7 +21,11 @@ const  GameRow = ({ title, platform, onLoaded }) => {
 
     if (platform) fetchGames();
     setLoading(false)
-    onLoaded()
+    } catch (error) {
+      console.log(error);
+    }finally{
+      onLoaded();
+    }
   }, [platform]);
 
   return (

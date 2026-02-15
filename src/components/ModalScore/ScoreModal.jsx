@@ -8,6 +8,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL  || 'http://localhost:5000';
 const ScoreModal = ({ isOpen, onClose, screenshot, game, setBg }) => {
   const [formData, setFormData] = useState({ username: '', password: '', score: '' });
   const [feedback, setFeedback] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const savedUser = localStorage.getItem('retrolandia_user');
@@ -22,7 +23,7 @@ const ScoreModal = ({ isOpen, onClose, screenshot, game, setBg }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const submissionData = {
       ...formData,
       screenshot: screenshot,
@@ -62,6 +63,8 @@ const ScoreModal = ({ isOpen, onClose, screenshot, game, setBg }) => {
     } catch (error) {
         console.error("Error de conexión:", error);
         setFeedback({type: 'error', message: error.msg})
+    }finally{
+      setIsLoading(false);
     }
   };
 
@@ -133,10 +136,15 @@ const ScoreModal = ({ isOpen, onClose, screenshot, game, setBg }) => {
           )}
 
           <div className={styles.actions}>
-            <button type="submit" className={`${styles.btn} ${styles.save}`}>
-              Enviar
+            <button type="submit" 
+                    className={`${styles.btn} 
+                    ${styles.save}`}
+                    >
+              {isLoading ? '⏳ Enviando...' : 'Enviar'}
             </button>
-            <button type="button" onClick={onClose} className={`${styles.btn} ${styles.cancel}`}>
+            <button type="button" 
+                    onClick={onClose} 
+                    className={`${styles.btn} ${styles.cancel}`}>
               Cancelar
             </button>
           </div>

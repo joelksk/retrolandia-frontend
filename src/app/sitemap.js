@@ -5,7 +5,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 const sitemap = async () => {
   let games = [];
   try {
-    const response = await fetch(`${API_URL}/api/games`, { cache: 'no-store' });
+    const response = await fetch(`${API_URL}/api/games/sitemap-data`, { cache: 'no-store' });
     games = await response.json();
   } catch (error) {
     console.error("Error cargando juegos para el sitemap:", error);
