@@ -29,7 +29,7 @@
   display: grid;
   grid-template-columns: 1fr 380px; /* Emulador grande | Info compacta */
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
 
 .emulatorWrapper {

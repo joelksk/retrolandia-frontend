@@ -11,6 +11,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'freebie.games',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.igdb.com',
+        pathname: '/**'
       }
     ],
   },

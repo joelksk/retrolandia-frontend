@@ -9,6 +9,7 @@ import ScoreModal from '@/components/ModalScore/ScoreModal'
 import Loader from '@/components/loader/Loader'
 import StatusMessage from '@/components/statusMessage/StatusMessage';
 import ControlsGuide from '@/components/controls/ControlsGuide'
+import RelatedGames from '@/components/carrousel/RelatedGames';
 
 const cleanName = (name) => {
   return decodeURIComponent(name).replace(/_/g, ' ').replace(/-/g, ' ');
@@ -19,16 +20,17 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL  || 'http://localhost:5000';
 const GameClientContent = ({initialGame}) => {
   const { slug } = useParams();
   const [game, setGame] = useState(initialGame);
+  const [relatedGames, setRelatedGames] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [screenshot, setScreenshot] = useState(null);
   const [feedback, setFeedback] = useState(null)
   const gameCanvasRef = useRef(null);
-  
-
 
   useEffect(() => {
     const loadData = async () => {
       fetch(`${API_URL}/api/games/${game._id}/play`, { method: 'POST' });
+      fetch(`${API_URL}/api/admin/games/${game._id}/related`)
+          .then(res => res.json()).then(data => setRelatedGames(data));
     };
     if (slug){
        loadData();
@@ -110,6 +112,9 @@ const GameClientContent = ({initialGame}) => {
             </div>
         </aside>
       </div>
+
+      {/**JUEGOS RELACIONADOS */}
+      <RelatedGames games={relatedGames} />
 
       <ControlsGuide system={game.system} />
 
