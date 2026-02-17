@@ -33,8 +33,15 @@ const GameClientContent = ({initialGame}) => {
           .then(res => res.json()).then(data => setRelatedGames(data));
     };
     if (slug){
-       loadData();
+      loadData();
+      //Usamos el hook para guardar el historial en el navegador
+      if (game && game._id) {
+      const history = JSON.parse(localStorage.getItem('recentGames') || '[]');
+      const filteredHistory = history.filter(id => id !== game._id);
+      const newHistory = [game._id, ...filteredHistory].slice(0, 10);
+      localStorage.setItem('recentGames', JSON.stringify(newHistory));
     }
+  }
   }, [slug]);
 
   const handleSaveScore = () => {
@@ -114,7 +121,7 @@ const GameClientContent = ({initialGame}) => {
       </div>
 
       {/**JUEGOS RELACIONADOS */}
-      <RelatedGames games={relatedGames} />
+      <RelatedGames games={relatedGames} title='Recomendados'/>
 
       <ControlsGuide system={game.system} />
 

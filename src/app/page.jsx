@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import GameRow from '../components/GameRow'
 import Hero from '../components/hero/Hero'
 import Loader from '@/components/loader/Loader';
+import RecentGames from '@/components/recentsGames/RecentGames';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL  || 'http://localhost:5000';
 
@@ -15,7 +16,7 @@ const PLATFORMS = [
 
 const Home = () => {
 
-const TOTAL_SECTIONS = PLATFORMS.length + 1;
+const TOTAL_SECTIONS = PLATFORMS.length + 2;
 const [loadedCount, setLoadedCount] = useState(0);
 
 const handleLoaded = () => {
@@ -31,6 +32,7 @@ return (
 
       <div style={{ display: isGlobalLoading ? 'none' : 'block' }}>
         <Hero onLoaded={handleLoaded}/>
+        <RecentGames onLoaded={handleLoaded} />
         {PLATFORMS.map(platform => <GameRow 
                                       key={platform.id} 
                                       title={platform.title} 

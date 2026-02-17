@@ -1,0 +1,7 @@
+.recentGamesContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+    align-items: center;
+}
