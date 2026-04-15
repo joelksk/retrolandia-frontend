@@ -16,6 +16,7 @@ export default function CommentSection({ gameId }) {
   const [userRating, setUserRating] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [feedback, setFeedback] = useState(null);
+  const [isNickFixed, setIsNickFixed] = useState(false);
 
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function CommentSection({ gameId }) {
     const savedNick = localStorage.getItem('retrolandia_user');
     if (savedNick) {
       setNick(savedNick);
+      setIsNickFixed(true)
     }else {
       setNick('');
     }
@@ -118,7 +120,7 @@ export default function CommentSection({ gameId }) {
           value={nick}
           onChange={(e) => setNick(e.target.value)}
           style={{ width: '30%' }}
-          readOnly={localStorage.getItem('retrolandia_user') ? true : false}
+          readOnly={isNickFixed}
         />
         {!hasVoted ? (
           <div className={styles.starRating}>
