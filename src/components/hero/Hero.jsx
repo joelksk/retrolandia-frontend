@@ -25,28 +25,54 @@ const Hero = ({onLoaded}) => {
     }
   }, []);
 
-  if (!featured) return null;
 
   return (
+    // <section className={styles.hero}>
+    //   <Image 
+    //     src={featured.image} 
+    //     alt={featured.title} 
+    //     fill 
+    //     priority 
+    //     className={styles.image}
+    //     sizes="100vw"
+    //   />
+    //   <div className={styles.overlay}>
+    //     <span className={styles.badge}>Lo mas jugado</span>
+    //     <h1 className={styles.title}>{dislpayName(featured.title)}</h1>
+    //     <p className={styles.stats}>⭐ {featured.rating?.average?.toFixed(1)}  |  🎮 {featured.playCount} veces jugado</p>
+    //     <Link href={`/juego/${featured.slug}`} className={styles.playBtn}>
+    //       Jugar Ahora
+    //     </Link>
+    //   </div>
+    // </section>
     <section className={styles.hero}>
-      {/* <img src={featured.image} alt={featured.title} className={styles.image} /> */}
-      <Image 
-        src={featured.image} 
-        alt={featured.title} 
-        fill 
-        priority 
-        className={styles.image}
-        sizes="100vw"
-      />
-      <div className={styles.overlay}>
-        <span className={styles.badge}>Lo mas jugado</span>
-        <h1 className={styles.title}>{dislpayName(featured.title)}</h1>
-        <p className={styles.stats}>⭐ {featured.rating?.average?.toFixed(1)}  |  🎮 {featured.playCount} veces jugado</p>
-        <Link href={`/juego/${featured.slug}`} className={styles.playBtn}>
-          Jugar Ahora
-        </Link>
+    {featured ? (
+      <>
+        <Image 
+          src={featured.image} 
+          alt={featured.title} 
+          fill 
+          priority 
+          className={styles.image}
+          sizes="100vw"
+          style={{ objectFit: 'contain' }}
+        />
+        <div className={styles.overlay}>
+          <span className={styles.badge}>Lo mas jugado</span>
+          <h1 className={styles.title}>{dislpayName(featured.title)}</h1>
+          <p className={styles.stats}>⭐ {featured.rating?.average?.toFixed(1)}  |  🎮 {featured.playCount} veces jugado</p>
+          <Link href={`/juego/${featured.slug}`} className={styles.playBtn}>
+            Jugar Ahora
+          </Link>
+        </div>
+      </>
+    ) : (
+      // Esto es lo que verá el usuario (y Google) mientras carga la API
+      <div className={styles.loaderContainer}>
+        <div className={styles.spinner}></div> 
       </div>
-    </section>
+    )}
+  </section>
   );
 }
 
