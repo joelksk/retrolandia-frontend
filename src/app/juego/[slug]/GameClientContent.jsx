@@ -3,13 +3,19 @@ import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'next/navigation';
 import styles from './game.module.css';
 import CommentSection from '@/components/comments/CommentsSection';
-import Emulator from '@/components/Emulator';
 import GameRanking from '@/components/GameRankings';
 import ScoreModal from '@/components/ModalScore/ScoreModal'
 import Loader from '@/components/loader/Loader'
 import StatusMessage from '@/components/statusMessage/StatusMessage';
 import ControlsGuide from '@/components/controls/ControlsGuide'
 import RelatedGames from '@/components/carrousel/RelatedGames';
+import dynamic from 'next/dynamic';
+
+// Importación dinámica: Desactiva el Server Side Rendering para el emulador
+const Emulator = dynamic(() => import('@/components/Emulator'), { 
+  ssr: false,
+  loading: () => <Loader message="Preparando hardware..." /> 
+});
 
 const cleanName = (name) => {
   return decodeURIComponent(name).replace(/_/g, ' ').replace(/-/g, ' ');
@@ -64,7 +70,7 @@ const GameClientContent = ({initialGame}) => {
                 setScreenshot(imageData);
                 setIsModalOpen(true);
             } else {
-                const internalData = window.EJS_emulator?.gameManager?.screenshot();
+                const internalData = typeof window !== 'undefined' ? window.EJS_emulator?.gameManager?.screenshot() : null;
                 setScreenshot(internalData);
                 setIsModalOpen(true);
             }
