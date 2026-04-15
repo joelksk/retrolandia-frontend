@@ -19,6 +19,8 @@ export default function CommentSection({ gameId }) {
 
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const savedNick = localStorage.getItem('retrolandia_user');
     if (savedNick) {
       setNick(savedNick);

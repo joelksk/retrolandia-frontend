@@ -27,6 +27,8 @@ const GameClientContent = ({initialGame}) => {
   const gameCanvasRef = useRef(null);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return; //Verificamos que haya navegador para que no rompa el localstorage en serachConsole
+
     const loadData = async () => {
       fetch(`${API_URL}/api/games/${game._id}/play`, { method: 'POST' });
       fetch(`${API_URL}/api/admin/games/${game._id}/related`)

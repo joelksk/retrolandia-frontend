@@ -10,6 +10,7 @@ const GameRanking = ({ gameId }) => {
   const [isUserInTopTen, setIsUserInTopTen] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const fetchRankings = async () => {
       try {
         const res = await fetch(`${API_URL}/api/rankings/${gameId}`);

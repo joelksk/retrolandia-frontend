@@ -11,6 +11,7 @@ const ScoreModal = ({ isOpen, onClose, screenshot, game, setBg }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const savedUser = localStorage.getItem('retrolandia_user');
       if (savedUser) {
           setFormData(prev => ({ ...prev, username: savedUser }));

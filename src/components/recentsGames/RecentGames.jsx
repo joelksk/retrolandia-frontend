@@ -10,6 +10,7 @@ const RecentGames = ({onLoaded, title}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const fetchRecent = async () => {
       const history = JSON.parse(localStorage.getItem('recentGames') || '[]');
       
