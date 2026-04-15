@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 80vh;
   border-radius: 20px;
   overflow: hidden;
   margin-bottom: 3rem;
@@ -11,16 +11,14 @@
 }
 
 .image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0.6;
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, var(--bg-dark) 20%, transparent 100%);
+  background: linear-gradient(to top, var(--bg-dark) 10%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,6 +84,7 @@
 @media (max-width: 768px) {
 
   .hero {
+    width: 95vw;
     height: 300px;
   }
 
@@ -98,7 +97,7 @@
 
   .badge {
     top: 1rem;
-    left: 50%;
+    left: 25%;
     transform: translateX(-50%); /* Centramos el badge de plataforma */
     font-size: 0.8rem;
   }

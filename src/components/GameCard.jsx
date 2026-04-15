@@ -4,7 +4,7 @@ import styles from './gameCard.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const GameCard = ({ game }) =>{
+const GameCard = ({ game, isPriority = false }) =>{
   const displayRating = game.rating?.average?.toFixed(1) || "0";
 
   return (
@@ -14,17 +14,15 @@ const GameCard = ({ game }) =>{
           <span className={styles.displayRating}>⭐ {displayRating}</span>
           <span className={styles.platformBadge}>{game.platform}</span>
         </div>
-        {/* <img 
-          src={game.image || '/assets/no-cover.png'} 
-          alt={game.title} 
-          className={styles.image}
-        /> */}
         <Image 
           src={game.image} 
           alt={game.title}
           width={300} 
           height={200}
           className={styles.image}
+          priority={isPriority} // Si es de las primeras, cárgala rápido
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+          loading={isPriority ? "eager" : "lazy"} // Eager para lo primero que se ve
         />
       </div>
 

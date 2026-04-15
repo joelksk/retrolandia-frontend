@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './hero.module.css';
 import { dislpayName } from '@/utils/utils.js';
+import Image from 'next/image';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
@@ -28,7 +29,15 @@ const Hero = ({onLoaded}) => {
 
   return (
     <section className={styles.hero}>
-      <img src={featured.image} alt={featured.title} className={styles.image} />
+      {/* <img src={featured.image} alt={featured.title} className={styles.image} /> */}
+      <Image 
+        src={featured.image} 
+        alt={featured.title} 
+        fill 
+        priority 
+        className={styles.image}
+        sizes="100vw"
+      />
       <div className={styles.overlay}>
         <span className={styles.badge}>Lo mas jugado</span>
         <h1 className={styles.title}>{dislpayName(featured.title)}</h1>
