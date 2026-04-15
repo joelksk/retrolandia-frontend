@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import ReportWidget from "@/components/widgets/ReportWidget";
+import { Analytics } from '@vercel/analytics/react';
 // import DonationModal from '@/components/donationModal/DonationModal'
 
 const geistSans = Geist({
@@ -78,8 +79,9 @@ export default function RootLayout({ children }) {
           onClose={() => setIsModalOpen(false)} 
           onConfirm={confirmDonation} 
         /> */}
+        <Analytics />
+        <GoogleAnalytics gaId="G-KSB13RR93N" />
       </body>
-      <GoogleAnalytics gaId="G-KSB13RR93N" />
     </html>
   );
 }
