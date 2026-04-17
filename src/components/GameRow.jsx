@@ -7,7 +7,7 @@ import SkeletonCard from './skeleton/SkeletonCard';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL  || 'http://localhost:5000';
 
-const  GameRow = ({ title, platform, onLoaded }) => {
+const  GameRow = ({ title, platform, onLoaded, isFirstRow = false }) => {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -37,7 +37,7 @@ const  GameRow = ({ title, platform, onLoaded }) => {
       <div className={styles.grid}>
         {loading 
           ? [1, 2, 3, 4, 5].map(i => <SkeletonCard key={i} />)
-          : games.map(game => <GameCard key={game._id} game={game} />)}
+          : games.map((game, index) => <GameCard key={game._id} game={game} isPriority ={isFirstRow && index < 2}/>)}
       </div>
       <div className={styles.gameRowFooter}>
         <Link href={`/platform/${platform}`} className={styles.viewAll}>

@@ -56,6 +56,7 @@ const Hero = ({onLoaded}) => {
           className={styles.image}
           sizes="100vw"
           style={{ objectFit: 'contain' }}
+          loading='eager'
         />
         <div className={styles.overlay}>
           <span className={styles.badge}>Lo mas jugado</span>

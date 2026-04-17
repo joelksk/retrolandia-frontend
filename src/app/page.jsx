@@ -32,12 +32,13 @@ return (
 
       <div style={{ display: isGlobalLoading ? 'none' : 'block' }}>
         <Hero onLoaded={handleLoaded}/>
-        <RecentGames onLoaded={handleLoaded} />
-        {PLATFORMS.map(platform => <GameRow 
+        <RecentGames onLoaded={handleLoaded} isFirstRow = {true} />
+        {PLATFORMS.map((platform, index) => <GameRow 
                                       key={platform.id} 
                                       title={platform.title} 
                                       platform={platform.platform}
                                       onLoaded={handleLoaded}
+                                      isFirstRow={index === 0}
                                     />
         )}
       </div>

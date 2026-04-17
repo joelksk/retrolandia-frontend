@@ -5,7 +5,7 @@ import RelatedGames from '../carrousel/RelatedGames';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
-const RecentGames = ({onLoaded, title}) => {
+const RecentGames = ({onLoaded, isFirstRow = false}) => {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +39,7 @@ const RecentGames = ({onLoaded, title}) => {
 
   return (
     <div className={styles.recentGamesContainer}>
-      <RelatedGames games={games} title="Jugado Recientemente" />
+      <RelatedGames games={games} title="Jugado Recientemente" isPriority={isFirstRow} />
     </div>
   );
 };

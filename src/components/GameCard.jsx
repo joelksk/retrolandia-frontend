@@ -20,7 +20,7 @@ const GameCard = ({ game, isPriority = false }) =>{
           width={300} 
           height={200}
           className={styles.image}
-          priority={isPriority} // Si es de las primeras, cárgala rápido
+          priority={isPriority}
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
           loading={isPriority ? "eager" : "lazy"} // Eager para lo primero que se ve
         />
